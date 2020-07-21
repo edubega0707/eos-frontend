@@ -4,11 +4,13 @@ const styles={
     container:{
         display:"flex",
         justifyContent: 'center',
-        alignItems: 'center',     
+        alignItems: 'center',  
+        padding: "10px",   
     },
 
     logo:{
-        width:"30%",
+        width:"10%",
+        heigth:"100%",
         marginRight: "10px",
     },
     title:{

@@ -1,8 +1,8 @@
 import { takeEvery, call, put} from 'redux-saga/effects';
 import CONSTANTES from '../Constantes';
 import { notification } from 'antd';
+import { history } from '../../routes/history'
 import { userActions } from '../actions/actionsAuth';
-//import { history } from '../../Components/routes/history';
 
 const loginDjango=(datos)=> fetch(`${CONSTANTES.URLAPI}/eos/api-token-auth/`,
 {
@@ -16,21 +16,29 @@ const loginDjango=(datos)=> fetch(`${CONSTANTES.URLAPI}/eos/api-token-auth/`,
   return response.json()
 })
 .catch(e=>{
-  console.log(e)
+  //console.log(e)
 })
 
 
 function* sagaLogin(values){
   try {
-    const user= yield call (loginDjango, values.datos)   
-    localStorage.setItem('user', JSON.stringify(user.token));
-    yield put (userActions.loginSuccess(user))
-    //history.push('/dashboard')
-    notification.success({
-      message: 'Bienvenido',
-      duration:3
-    });
-
+    const user= yield call (loginDjango, values.datos)
+    if(user.token){
+      localStorage.setItem('user', user.token);
+      yield put (userActions.loginSuccess(user))
+      history.push('/account')
+      notification.success({
+        message: `Bienvenido ${user.username}`,
+        duration:3
+      });  
+    }
+    else{
+      notification.error({
+        message: 'Credenciales incorrectas',
+        duration:2
+      });
+    }
+   
   } catch (error) {
     notification.error({
         message: 'Error',

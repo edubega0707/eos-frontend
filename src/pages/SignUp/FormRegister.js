@@ -2,9 +2,8 @@ import React from 'react';
 import {Button} from 'antd'
 import { Formik, Form, FastField} from "formik";
 import { FieldText, FieldPassword } from '../../components/inputs';
-import { validationSchema } from '../../utils/formValidations';
-import {useDispatch} from 'react-redux'
-import { userActions } from '../../redux/actions/actionsAuth';
+import { validationFormRegister } from '../../utils/formValidations';
+
 
 const styles={
     containerButton:{
@@ -12,29 +11,35 @@ const styles={
         justifyContent: 'center',
     }
 }
-const FormLogin = (props) => {
-    const dispatch=useDispatch()
+const FormRegister = (props) => {
+
 
     const onSubmit = values => {
-        dispatch(userActions.loginRequest(values))
+        console.log("form data", values);      
       };
      
     return (
         <Formik
-            initialValues={{ username: '', password: '' }}
-            validationSchema={validationSchema}
+            initialValues={{ email:'', username: '', password: '', password_check:''}}
+            validationSchema={validationFormRegister}
             onSubmit={onSubmit}
         >
             <Form>
+                <FastField name="email" >
+                    {props => <FieldText {...props} placeholder="Correo Electronico" />}
+                </FastField>
                 <FastField name="username" >
                     {props => <FieldText {...props} placeholder="Usuario" />}
                 </FastField>
                 <FastField name="password" >
                     {props => <FieldPassword {...props} placeholder="Contraseña" />}
                 </FastField>
+                <FastField name="password_check" >
+                    {props => <FieldPassword {...props} placeholder="Repetir Contraseña" />}
+                </FastField>
                 <div style={styles.containerButton}>
                     <Button type="primary" htmlType="submit" >
-                        Inciar Sesión
+                        Registrarse
                     </Button>
                 </div>
 
@@ -43,4 +48,4 @@ const FormLogin = (props) => {
     );
 };
 
-export default FormLogin;
+export default FormRegister;

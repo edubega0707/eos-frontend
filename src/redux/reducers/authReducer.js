@@ -1,6 +1,7 @@
 import  CONSTANTES from '../Constantes'
 
-let user = JSON.parse(localStorage.getItem('user'));
+let user = localStorage.getItem('user');
+console.log(user)
 const initialState = user ? { loggedIn: true, user } : {};
 
 export default function authenticationReducer(state = initialState, action) {

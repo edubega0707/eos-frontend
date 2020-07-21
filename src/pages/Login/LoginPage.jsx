@@ -14,6 +14,9 @@ const LoginPage = () => {
             backgroundImage: `url(${fondo})`,
         },
         containerLoginForm:{
+            display:"flex",
+            justifyContent: 'center',
+            alignItems: 'center',
             backgroundColor: '#3f72af',
         }
     }
