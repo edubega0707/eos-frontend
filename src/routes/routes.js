@@ -1,12 +1,11 @@
 import React from 'react'
 import {Router, Route, Redirect, Switch } from 'react-router-dom';
 //import { PrivateRoute } from './PrivateRoute';
-//import Home from './Components/NoAutenticados/Home/Home';
 //import Dashboard from './Components/Autenticados/Dashboard/Dashboard';
 import { history } from './history';
-import HomePage from '../pages/HomePage';
-import LoginPage from '../pages/LoginPage';
-import SignUpPage from '../pages/SignUpPage';
+import HomePage from '../pages/Home/HomePage';
+import LoginPage from '../pages/Login/LoginPage';
+import SignUpPage from '../pages/SignUp/SignUpPage';
 export const Routes=()=>{
     return(
         <Router history={history}>
