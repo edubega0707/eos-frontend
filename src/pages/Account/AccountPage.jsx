@@ -1,6 +1,6 @@
 import React,{useState, useEffect }  from 'react';
 import {Layout} from 'antd';
-import {useSelector, useDispatch} from 'react-redux'
+//import {useSelector, useDispatch} from 'react-redux'
 import SiderNav from '../../containers/SiderNav';
 import HeaderAccount from '../../containers/HeaderAccount';
 
@@ -8,7 +8,6 @@ const {
     Content,  Sider
    } = Layout;
 const AccountPage = (props) => {
-    const [collapsed, setCollapsed]=useState(false)
     const [MargenIzq, setMargen]=useState(null)
 
     useEffect(()=>{
@@ -37,7 +36,7 @@ const AccountPage = (props) => {
             <Layout style={{ marginLeft: MargenIzq }} >
                 <HeaderAccount />
                 <Content style={{ overflow: 'initial' }}>
-                    <div style={{ padding: 20, background: "#fff", marginTop: "80px", boxSizing: "border-box" }} >
+                    <div style={{ padding: 20, background: "#fff", marginTop: "10px", boxSizing: "border-box" }} >
                         assdsddas
                     </div>
                 </Content>

@@ -1,4 +1,5 @@
 import CONSTANTES from '../Constantes';
+import { history } from '../../routes/history';
 
 //----------------------------------------------------------------------//
 //--------------------------ACTIONS LOGIN------------------------------//
@@ -13,6 +14,7 @@ export const userActions = {
 
 function logout() {
     localStorage.removeItem('user');
+    history.push("/")
     return { type: CONSTANTES.LOGOUT };
 }
 
