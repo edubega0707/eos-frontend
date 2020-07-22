@@ -9,7 +9,7 @@ import AccountPage from '../pages/Account/AccountPage';
 export const Routes=()=>{
     return(
         <Router history={history}>
-            <Switch>
+            <Switch>   
                 <PrivateRoute path="/account" component={AccountPage} />
                 <Route exact path="/" component={HomePage} />   
                 <Route exact path="/login" component={LoginPage} />  

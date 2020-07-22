@@ -3,7 +3,7 @@ import {Layout} from 'antd';
 //import {useSelector, useDispatch} from 'react-redux'
 import SiderNav from '../../containers/SiderNav';
 import HeaderAccount from '../../containers/HeaderAccount';
-
+import {RoutesAccount} from '../../routes/routesAccount'
 const {
     Content,  Sider
    } = Layout;
@@ -13,6 +13,7 @@ const AccountPage = (props) => {
     useEffect(()=>{
         //getUserLogged()
     },[])
+
     return (
         <Layout>
             <Sider style={{
@@ -37,7 +38,7 @@ const AccountPage = (props) => {
                 <HeaderAccount />
                 <Content style={{ overflow: 'initial' }}>
                     <div style={{ padding: 20, background: "#fff", marginTop: "10px", boxSizing: "border-box" }} >
-                        assdsddas
+                        <RoutesAccount/>
                     </div>
                 </Content>
 

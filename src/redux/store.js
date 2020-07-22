@@ -1,9 +1,16 @@
 import {createStore, applyMiddleware, combineReducers,compose} from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import authenticationReducer from './reducers/authReducer'
+import profileReducer from './reducers/profileReducer'
+import accountsReducer from './reducers/acoountsReducer'
 import sagasPrimary from './sagas/Sagas'
+import sagasProfile from './sagas/SagasProfile'
+import sagasAccounts from './sagas/SagasAccounts'
+
 const reducers= combineReducers({
-    authenticationReducer
+    authenticationReducer,
+    profileReducer,
+    accountsReducer
 })
 
 const sagaMiddleware = createSagaMiddleware();
@@ -15,4 +22,7 @@ const store = createStore(reducers, /* preloadedState, */ composeEnhancers(
 
 
 sagaMiddleware.run(sagasPrimary);
+sagaMiddleware.run(sagasProfile);
+sagaMiddleware.run(sagasAccounts)
+
 export default store;

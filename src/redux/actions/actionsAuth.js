@@ -10,7 +10,7 @@ export const userActions = {
     loginRequest,
     loginSuccess,
     loginFailure
-};
+}
 
 function logout() {
     localStorage.removeItem('user');

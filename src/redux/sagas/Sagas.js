@@ -51,5 +51,4 @@ function* sagaLogin(values){
 
 export default function* sagasPrimary() {
   yield takeEvery(CONSTANTES.LOGIN_REQUEST, sagaLogin)
-  //yield takeEvery(CONSTANTES.GETUSUARIO, getUsario) 
 }
