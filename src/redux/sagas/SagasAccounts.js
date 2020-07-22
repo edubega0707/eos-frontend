@@ -2,8 +2,9 @@ import { takeEvery, call, put} from 'redux-saga/effects';
 import CONSTANTES from '../Constantes';
 import { notification } from 'antd';
 import { ProfileActions } from '../actions/actionsProfile';
+import { AccountTypeActions, AccountDebitActions, AccountCreditActions } from '../actions/actionsAccounts';
 
-const getProfile=(user)=> fetch(`${CONSTANTES.URLAPI}/eos/my_user/`,
+const getTypeAccounts=(user)=> fetch(`${CONSTANTES.URLAPI}/eos/admin/type_accounts/`,
 {
   method: 'GET',
   headers: new Headers({
@@ -17,12 +18,11 @@ const getProfile=(user)=> fetch(`${CONSTANTES.URLAPI}/eos/my_user/`,
 })
 
 
-function* sagaGetProfile(values){
+function* sagaGetTypeAccounts(values){
   try { 
     const user = localStorage.getItem('user');
-    const profile= yield call (getProfile, user)
-    console.log(profile)
-    yield put (ProfileActions.getProfileSuccess(profile)) 
+    const typeAccounts= yield call (getTypeAccounts, user)
+    yield put (AccountTypeActions.typeAccountsSuccess(typeAccounts)) 
   } catch (error) {
     notification.error({
         message: 'Error',
@@ -32,7 +32,57 @@ function* sagaGetProfile(values){
   }
 }
 
+const getAccounts=(user,idType)=> fetch(`${CONSTANTES.URLAPI}/eos/my_accounts/?search=${idType}`,
+{
+  method: 'GET',
+  headers: new Headers({
+    'Authorization':'Token '+user,
+    'Content-Type': 'application/json'
+})
+})
+.then(response => response.json())
+.catch(e=>{
+  console.log(e)
+})
+
+
+function* sagaGetDebitAccounts(values){
+    try { 
+      const user = localStorage.getItem('user');
+      const idType= values.idTypeAccount
+      const accounts= yield call (getAccounts, user, idType)
+      yield put (AccountDebitActions.accountsSuccess(accounts)) 
+    } catch (error) {
+      notification.error({
+          message: 'Error',
+          duration:2
+        });
+      yield put (AccountDebitActions.accountsFailed(error))
+    }
+  }
+
+
+  function* sagaGetCreditAccounts(values){
+    try { 
+      const user = localStorage.getItem('user');
+      const idType= values.idTypeAccount
+      const accounts= yield call (getAccounts, user, idType)
+      yield put (AccountCreditActions.accountsCreditSuccess(accounts)) 
+    } catch (error) {
+      notification.error({
+          message: 'Error',
+          duration:2
+        });
+      yield put (AccountCreditActions.accountsCreditFailed(error))
+    }
+  }
+  
+
 
 export default function* sagasAccounts() {
-  yield takeEvery(CONSTANTES.GET_PROFILE_REQUEST, sagaGetProfile)
+  yield takeEvery(CONSTANTES.GET_TYPE_ACCOUNTS_REQUEST, sagaGetTypeAccounts)
+  yield takeEvery(CONSTANTES.GET_ACCOUNTS_DEBIT_REQUEST, sagaGetDebitAccounts)
+  yield takeEvery(CONSTANTES.GET_ACCOUNTS_CREDIT_REQUEST, sagaGetCreditAccounts)
+
+
 }

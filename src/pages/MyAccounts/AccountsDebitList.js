@@ -1,17 +1,18 @@
-import React, {useState,useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {List} from 'antd'
 import AccountDebitCard from '../../components/AccountDebitCard';
 import {useSelector, useDispatch} from 'react-redux'
-const AcountsList = (props) => {
+import { AccountDebitActions} from '../../redux/actions/actionsAccounts';
+const AccountsDebitList = (props) => {
   
   const { typeAccount } = props
-  const accounts= useSelector(state => state.accountsReducer.accounts)
+  const accounts= useSelector(state => state.accountsDebitReducer.accounts)
   const dispatch=useDispatch()
 
 
   useEffect(()=>{
-
-  },[])
+      if(typeAccount) dispatch(AccountDebitActions.accountsRequest(typeAccount))
+  },[dispatch, typeAccount])
 
   return (
     <List
@@ -34,4 +35,4 @@ const AcountsList = (props) => {
   );
 };
 
-export default AcountsList;
+export default AccountsDebitList;

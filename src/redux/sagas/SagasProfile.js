@@ -2,7 +2,6 @@ import { takeEvery, call, put} from 'redux-saga/effects';
 import CONSTANTES from '../Constantes';
 import { notification } from 'antd';
 import { ProfileActions } from '../actions/actionsProfile';
-import { AccountActions } from '../actions/actionsAccounts';
 
 const getProfile=(user)=> fetch(`${CONSTANTES.URLAPI}/eos/my_user/`,
 {
@@ -23,7 +22,6 @@ function* sagaGetProfile(values){
     const user = localStorage.getItem('user');
     const profile= yield call (getProfile, user)
     yield put (ProfileActions.getProfileSuccess(profile)) 
-    yield put (AccountActions.accountsRequest(profile.accounts_user))
   } catch (error) {
     notification.error({
         message: 'Error',
