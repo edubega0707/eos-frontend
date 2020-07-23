@@ -8,7 +8,10 @@ import CONSTANTES from '../Constantes';
 export const AccountDebitActions = {
     accountsRequest,
     accountsSuccess,
-    accountsFailed
+    accountsFailed,
+    accountDebitCreateRequest,
+    accountDebitCreateSuccess,
+    accountDebitCreateFailed
 };
 
 
@@ -16,13 +19,22 @@ function accountsRequest(idTypeAccount) {return { type: CONSTANTES.GET_ACCOUNTS_
 function accountsSuccess(accounts) {return { type: CONSTANTES.GET_ACCOUNTS_DEBIT_SUCCESS, accounts }}
 function accountsFailed(error) {return { type: CONSTANTES.GET_ACCOUNTS_DEBIT_FAILED, error }}
 
+function accountDebitCreateRequest(data) {return { type: CONSTANTES.CREATE_ACCOUNT_DEBIT_REQUEST, data}}
+function accountDebitCreateSuccess(account) {return { type: CONSTANTES.CREATE_ACCOUNT_DEBIT_SUCCESS, account }}
+function accountDebitCreateFailed(error) {return { type: CONSTANTES.CREATE_ACCOUNT_DEBIT_FAILED, error }}
+
+
+
+
+
+
+
 
 export const AccountCreditActions = {
     accountsCreditRequest,
     accountsCreditSuccess,
     accountsCreditFailed
 };
-
 
 function accountsCreditRequest(idTypeAccount) {return { type: CONSTANTES.GET_ACCOUNTS_CREDIT_REQUEST, idTypeAccount}}
 function accountsCreditSuccess(accounts) {return { type: CONSTANTES.GET_ACCOUNTS_CREDIT_SUCCESS, accounts }}

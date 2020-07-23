@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import {List} from 'antd'
-import AccountDebitCard from '../../components/AccountDebitCard';
 import {useSelector, useDispatch} from 'react-redux'
 import { AccountDebitActions} from '../../redux/actions/actionsAccounts';
+import DebitCardActions from '../../containers/DebitCardActions';
 const AccountsDebitList = (props) => {
   
   const { typeAccount } = props
@@ -28,7 +28,7 @@ const AccountsDebitList = (props) => {
       dataSource={accounts}
       renderItem={account => (
         <List.Item>
-          <AccountDebitCard account={account} />
+          <DebitCardActions account={account} />
         </List.Item>
       )}
     />

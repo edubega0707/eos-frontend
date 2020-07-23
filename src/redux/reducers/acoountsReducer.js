@@ -18,7 +18,7 @@ export  function accountsCreditReducer(state = initialStateDebitAccounts, action
                 error:""
             },
           };
-      case CONSTANTES.GET_ACCOUNTS_CREDIT_SUCCESS:
+    case CONSTANTES.GET_ACCOUNTS_CREDIT_SUCCESS:
           return {
               ...state,
               accounts: [...action.accounts],
@@ -27,7 +27,7 @@ export  function accountsCreditReducer(state = initialStateDebitAccounts, action
                   error: ""
               },
           };
-      case CONSTANTES.GET_ACCOUNTS_CREDIT_FAILED:
+    case CONSTANTES.GET_ACCOUNTS_CREDIT_FAILED:
           return {
               ...state,
               accountsStatus: {
@@ -35,7 +35,7 @@ export  function accountsCreditReducer(state = initialStateDebitAccounts, action
                   error: action.error
               },
           };
-
+    
     default:
       return state
   }
@@ -52,13 +52,13 @@ const initialStateCreditAccounts = {
 
 export  function accountsDebitReducer(state = initialStateCreditAccounts, action) {
   switch (action.type) {
-    case CONSTANTES.GET_ACCOUNTS_DEBIT_REQUEST:
-        return {
-            ...state,
-            accountsStatus: {
-                status:"success",
-                error:""
-            },
+      case CONSTANTES.GET_ACCOUNTS_DEBIT_REQUEST:
+          return {
+              ...state,
+              accountsStatus: {
+                  status: "loading",
+                  error: ""
+              },
           };
       case CONSTANTES.GET_ACCOUNTS_DEBIT_SUCCESS:
           return {
@@ -77,6 +77,32 @@ export  function accountsDebitReducer(state = initialStateCreditAccounts, action
                   error: action.error
               },
           };
+      case CONSTANTES.CREATE_ACCOUNT_DEBIT_REQUEST:
+          return {
+              ...state,
+              accountsStatus: {
+                  status: "loading",
+                  error: ""
+              },
+          }
+      case CONSTANTES.CREATE_ACCOUNT_DEBIT_SUCCESS:
+          return {
+              ...state,
+              accounts: [...state.accounts, action.account],
+              accountsStatus: {
+                  status: "success",
+                  error: ""
+              },
+          }
+      case CONSTANTES.CREATE_ACCOUNT_DEBIT_FAILED:
+          return {
+              ...state,
+              accountsStatus: {
+                  status: "error",
+                  error: action.error
+              },
+          }
+        
 
     default:
       return state

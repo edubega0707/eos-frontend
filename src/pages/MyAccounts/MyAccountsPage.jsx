@@ -7,10 +7,20 @@ import BannerProfile from '../../components/BannerProfile';
 import {AccountTypeActions } from '../../redux/actions/actionsAccounts';
 import AccountsDebitList from './AccountsDebitList';
 import AccountCreditList from './AccountCreditList';
+import ModalFormAction from '../../containers/ModalFormAction';
+import FormDebitAccount from './Forms/FormDebitAccount';
+import FormCreditAccount from './Forms/FormCreditAccount';
+import FormAccountOthers from './Forms/FormAccountOthers';
 
 const { Panel } = Collapse;
 const styles={
     containerAcounts:{
+        margin: '2em 0 2em 0',
+    },
+    containerActions:{
+        display:"flex",
+        justifyContent: 'space-around',
+        alignContent: 'center',
         margin: '2em 0 2em 0',
     }
 }
@@ -28,7 +38,6 @@ const renderList=(typeAccount)=>{
 
 const MyAccountsPage = () => {
     const profile= useSelector(state => state.profileReducer.profile)
-    //const accounts= useSelector(state => state.accountsReducer.accounts)
     const typeAccounts= useSelector(state => state.typeAccountsReducer.typeAcounts)
     const dispatch=useDispatch()
 
@@ -42,6 +51,17 @@ const MyAccountsPage = () => {
             <Col lg={24} md={24} sm={24} xs={24}>
                 <BannerProfile profile={profile} />
             </Col>
+            <Col lg={24} md={24} sm={24} xs={24} style={styles.containerActions}>
+                <ModalFormAction title="Agregar cuenta de Debito">
+                    <FormDebitAccount/>
+                </ModalFormAction>
+                <ModalFormAction title="Agregar cuenta de Credito">
+                   <FormCreditAccount/>
+                </ModalFormAction>
+                <ModalFormAction title="Agregar cuenta de terceros">
+                    <FormAccountOthers/>
+                </ModalFormAction>
+            </Col>
             <Col lg={24} md={24} sm={24} xs={24} style={styles.containerAcounts}>
                 <Collapse
                     bordered={false}
@@ -49,8 +69,7 @@ const MyAccountsPage = () => {
                     expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
                 >
                     {typeAccounts.length > 0 ?
-                        typeAccounts.map(typeAccount => (
-                           
+                        typeAccounts.map(typeAccount => (                          
                         <Panel header={typeAccount.title_account} key={typeAccount.id}>
                             {renderList(typeAccount)}
                         </Panel>))
