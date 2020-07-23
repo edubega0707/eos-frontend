@@ -24,9 +24,7 @@ const AccountDebitCard = (props) => {
         <div style={styles.containerCard}>
             <img src={logovisa} alt="logovisa" style={styles.logoVisa}/>
             <span>{account.number_account}</span>
-            <Statistic  value={1000}  prefix="$" valueStyle={styles.valueStyle} precision={2}/>
-             
-            
+            <Statistic  value={account.ammount}  prefix="$" valueStyle={styles.valueStyle} precision={2}/>
         </div>
     );
 };
