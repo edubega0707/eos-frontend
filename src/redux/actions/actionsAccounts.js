@@ -37,12 +37,23 @@ function getDetailAccountFailed(error){return { type: CONSTANTES.GET_DETAIL_ACCO
 export const AccountCreditActions = {
     accountsCreditRequest,
     accountsCreditSuccess,
-    accountsCreditFailed
+    accountsCreditFailed,
+
+    accountCreditCreateRequest,
+    accountCreditCreateSuccess,
+    accountCreditCreateFailed
 };
 
 function accountsCreditRequest(idTypeAccount) {return { type: CONSTANTES.GET_ACCOUNTS_CREDIT_REQUEST, idTypeAccount}}
 function accountsCreditSuccess(accounts) {return { type: CONSTANTES.GET_ACCOUNTS_CREDIT_SUCCESS, accounts }}
 function accountsCreditFailed(error) {return { type: CONSTANTES.GET_ACCOUNTS_CREDIT_FAILED, error }}
+
+function accountCreditCreateRequest(data) {return { type: CONSTANTES.CREATE_ACCOUNT_CREDIT_REQUEST, data}}
+function accountCreditCreateSuccess(account) {return { type: CONSTANTES.CREATE_ACCOUNT_CREDIT_SUCCESS, account }}
+function accountCreditCreateFailed(error) {return { type: CONSTANTES.CREATE_ACCOUNT_CREDIT_FAILED, error }}
+
+
+
 
 
 export const AccountTypeActions={

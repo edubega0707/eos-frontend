@@ -109,6 +109,23 @@ function* sagaCreateAccount(values) {
     }
   }
 
+  function* sagaCreateAccountCredit(values) {
+    try {
+      console.log(values)
+      const user = localStorage.getItem('user');
+      const newAccount=yield call (createAccount, user, values.data)
+      
+      yield put(AccountCreditActions.accountCreditCreateSuccess(newAccount))
+    } catch (error) 
+    {
+      notification.error({
+        message: 'Error',
+        duration:2
+      });
+      yield put (AccountCreditActions.accountCreditCreateFailed(error))
+    }
+  }
+
 
 const getDetailAccount=(user,idAccount)=> fetch(`${CONSTANTES.URLAPI}/eos/my_accounts/${idAccount}/`,
 {
@@ -144,6 +161,7 @@ export default function* sagasAccounts() {
   yield takeEvery(CONSTANTES.GET_ACCOUNTS_DEBIT_REQUEST, sagaGetDebitAccounts)
   yield takeEvery(CONSTANTES.GET_ACCOUNTS_CREDIT_REQUEST, sagaGetCreditAccounts)
   yield takeEvery(CONSTANTES.CREATE_ACCOUNT_DEBIT_REQUEST, sagaCreateAccount)
+  yield takeEvery(CONSTANTES.CREATE_ACCOUNT_CREDIT_REQUEST, sagaCreateAccountCredit)
   yield takeEvery(CONSTANTES.GET_DETAIL_ACCOUNT_REQUEST, sagaDetailAccount)
 
 }

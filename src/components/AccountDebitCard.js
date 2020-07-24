@@ -22,7 +22,6 @@ const styles={
 }
 const AccountDebitCard = (props) => {
     const{account}=props
-
     return (
         <div style={styles.containerCard}>
             <img src={logovisa} alt="logovisa" style={styles.logoVisa}/>

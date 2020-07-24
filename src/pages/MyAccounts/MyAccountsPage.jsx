@@ -9,8 +9,8 @@ import AccountsDebitList from './AccountsDebitList';
 import AccountCreditList from './AccountCreditList';
 import ModalFormAction from '../../containers/ModalFormAction';
 import FormDebitAccount from './Forms/FormDebitAccount';
-import FormCreditAccount from './Forms/FormCreditAccount';
-import FormAccountOthers from './Forms/FormAccountOthers';
+// import FormCreditAccount from './Forms/FormCreditAccount';
+// import FormAccountOthers from './Forms/FormAccountOthers';
 
 const { Panel } = Collapse;
 const styles={
@@ -53,10 +53,10 @@ const MyAccountsPage = () => {
             </Col>
             <Col lg={24} md={24} sm={24} xs={24} style={styles.containerActions}>
                 <ModalFormAction title="Agregar cuenta de Debito" submitFunction={AccountDebitActions.accountDebitCreateRequest}>
-                    <FormDebitAccount/>
+                    <FormDebitAccount type="DEBIT"/>
                 </ModalFormAction>
-                <ModalFormAction title="Agregar cuenta de Credito" submitFunction={AccountCreditActions.accountsCreditRequest}>
-                   <FormCreditAccount/>
+                <ModalFormAction title="Agregar cuenta de Credito" submitFunction={AccountCreditActions.accountCreditCreateRequest}>
+                    <FormDebitAccount type="CREDIT"/>
                 </ModalFormAction>
             </Col>
             <Col lg={24} md={24} sm={24} xs={24} style={styles.containerAcounts}>

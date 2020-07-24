@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 import {List} from 'antd'
 
 import {useSelector, useDispatch} from 'react-redux'
-import AccountCreditCard from '../../components/AccountCreditCard';
 import { AccountCreditActions} from '../../redux/actions/actionsAccounts';
+import DebitCardActions from '../../containers/DebitCardActions';
 
 const AccountCreditList = (props) => {
   
@@ -21,16 +21,16 @@ const AccountCreditList = (props) => {
       grid={{
         gutter: 16,
         xs: 1,
-        sm: 2,
-        md: 3,
-        lg: 3,
-        xl: 4,
+        sm: 1,
+        md: 2,
+        lg: 2,
+        xl: 3,
         xxl: 4,
       }}
       dataSource={accounts}
       renderItem={account => (
         <List.Item>
-          <AccountCreditCard account={account} />
+          <DebitCardActions account={account} />
         </List.Item>
       )}
     />

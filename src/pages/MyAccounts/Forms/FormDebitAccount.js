@@ -23,7 +23,7 @@ const FormDebitAccount = (props) => {
     const typeAccounts= useSelector(state => state.typeAccountsReducer)
     const ac = React.useMemo(() => {return genRand();},[]);
 
-    const{registro, loading}=props
+    const{registro, loading, type}=props
     const onSubmit = values => {
         registro(values)       
     };
@@ -32,7 +32,7 @@ const FormDebitAccount = (props) => {
         user_account: profile.id, 
         number_account:ac, 
         type_account: typeAccounts.typeAcountsStatus.status==="success"?
-            typeAccounts.typeAcounts.find(type=>type.title_account==="DEBIT").id:
+            typeAccounts.typeAcounts.find(typeAccount=>typeAccount.title_account===type).id:
             null
     }
     return (

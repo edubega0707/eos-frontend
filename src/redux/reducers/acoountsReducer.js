@@ -35,7 +35,31 @@ export  function accountsCreditReducer(state = initialStateDebitAccounts, action
                   error: action.error
               },
           };
-    
+    case CONSTANTES.CREATE_ACCOUNT_CREDIT_REQUEST:
+          return {
+              ...state,
+              accountsStatus: {
+                  status: "loading",
+                  error: ""
+              },
+          }
+    case CONSTANTES.CREATE_ACCOUNT_CREDIT_SUCCESS:
+          return {
+              ...state,
+              accounts: [...state.accounts, action.account],
+              accountsStatus: {
+                  status: "success",
+                  error: ""
+              },
+          }
+    case CONSTANTES.CREATE_ACCOUNT_CREDIT_FAILED:
+          return {
+              ...state,
+              accountsStatus: {
+                  status: "error",
+                  error: action.error
+              },
+          }
     default:
       return state
   }
@@ -106,8 +130,6 @@ export  function accountsDebitReducer(state = initialStateCreditAccounts, action
       return state
   }
 }
-
-
 
 
 const initialStateTypeAccounts = {
