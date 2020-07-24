@@ -3,7 +3,8 @@ import {Button} from 'antd'
 import { Formik, Form, FastField} from "formik";
 import { FieldText, FieldPassword } from '../../components/inputs';
 import { validationFormRegister } from '../../utils/formValidations';
-
+import {useDispatch} from 'react-redux'
+import { userActions } from '../../redux/actions/actionsAuth';
 
 const styles={
     containerButton:{
@@ -12,15 +13,14 @@ const styles={
     }
 }
 const FormRegister = (props) => {
-
-
+    const dispatch=useDispatch()
     const onSubmit = values => {
-        console.log("form data", values);      
+        dispatch(userActions.signInRequest(values))   
       };
      
     return (
         <Formik
-            initialValues={{ email:'', username: '', password: '', password_check:''}}
+            initialValues={{ email:'', username: '', password: ''}}
             validationSchema={validationFormRegister}
             onSubmit={onSubmit}
         >
@@ -34,9 +34,9 @@ const FormRegister = (props) => {
                 <FastField name="password" >
                     {props => <FieldPassword {...props} placeholder="Contraseña" />}
                 </FastField>
-                <FastField name="password_check" >
+                {/* <FastField name="password_check" >
                     {props => <FieldPassword {...props} placeholder="Repetir Contraseña" />}
-                </FastField>
+                </FastField> */}
                 <div style={styles.containerButton}>
                     <Button type="primary" htmlType="submit" >
                         Registrarse

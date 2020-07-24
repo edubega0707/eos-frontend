@@ -102,22 +102,6 @@ export  function accountsDebitReducer(state = initialStateCreditAccounts, action
                   error: action.error
               },
           }
-        case CONSTANTES.UPDATE_ACCOUNT_DEBIT:
-            return {
-                ...state,
-                accounts: state.accounts.map((account) => {
-                    if (account.id === action.account.id) {
-                      return { ...account, ...action.account };
-                    }
-                    return account;
-                  }),
-                accountsStatus: {
-                    status: "error",
-                    error: action.error
-                },
-            }
-        
-
     default:
       return state
   }
@@ -164,3 +148,70 @@ export  function typeAccountsReducer(state = initialStateTypeAccounts, action) {
         return state
     }
   }
+
+
+  const initialStateDetailCandidato= {
+    account:{},
+    accoundDetailStatus:{
+        status:null,
+        error:""
+    }
+}
+export  function accountDetailReducer(state = initialStateDetailCandidato, action) {
+    switch (action.type) {
+        case CONSTANTES.GET_DETAIL_ACCOUNT_REQUEST:
+            return {
+                ...state,
+                accoundDetailStatus: {
+                    status: "loading",
+                    error: ""
+                },
+            };
+        case CONSTANTES.GET_DETAIL_ACCOUNT_SUCCESS:
+            return {
+                ...state,
+                account:{...action.account},
+                accoundDetailStatus: {
+                    status: "success",
+                    error: ""
+                },
+            };
+        case CONSTANTES.GET_DETAIL_ACCOUNT_FAILED:
+            return {
+                ...state,
+                accoundDetailStatus: {
+                    status: "error",
+                    error: action.error
+                },
+            };
+        case CONSTANTES.UPDATE_ACCOUNT_DEBIT:
+            console.log(action.account)
+            return {
+                ...state,
+                account:{
+                    ...state.account, 
+                    ammount:state.account.ammount+action.account.ammount,
+                    account_transaction:[...state.account.account_transaction, action.account]
+                },
+                accoundDetailStatus: {
+                    status: "success",
+                    error: ""
+                },
+            }
+
+
+      default:
+        return state
+    }
+  }
+
+
+
+//   accounts: state.accounts.map((account) => {
+//     if (account.id === action.account.id) {
+//         console.log(action.account)
+//         //account.ammount=account.ammount+action.account.ammount
+//         return { ...account, ammount: account.ammount + action.account.ammount }
+//     }
+//     return account;
+// }),

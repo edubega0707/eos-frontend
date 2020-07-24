@@ -9,7 +9,8 @@ export const userActions = {
     logout,
     loginRequest,
     loginSuccess,
-    loginFailure
+    loginFailure,
+    signInRequest
 }
 
 function logout() {
@@ -23,3 +24,5 @@ function logout() {
 function loginRequest(datos) {return { type: CONSTANTES.LOGIN_REQUEST, datos }}
 function loginSuccess(user) { return { type: CONSTANTES.LOGIN_SUCCESS, user } }
 function loginFailure(error) { return { type: CONSTANTES.LOGIN_FAILED, error } }
+
+function signInRequest(data) { return { type: CONSTANTES.SIGN_UP_REQUEST, data }}

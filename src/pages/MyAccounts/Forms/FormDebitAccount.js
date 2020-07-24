@@ -10,16 +10,18 @@ const styles={
     containerButton:{
         display:"flex",
         justifyContent: 'center',
+        marginTop:"3em"
     }
 }
 
 function genRand() {
-    return Math.floor(Math.random()*89999+10000);
+    return Math.floor(Math.random()*899999999999+100000000000);
  }
 
 const FormDebitAccount = (props) => {
     const profile= useSelector(state => state.profileReducer.profile)
     const typeAccounts= useSelector(state => state.typeAccountsReducer)
+    const ac = React.useMemo(() => {return genRand();},[]);
 
     const{registro, loading}=props
     const onSubmit = values => {
@@ -28,7 +30,7 @@ const FormDebitAccount = (props) => {
 
     const initialValues={ 
         user_account: profile.id, 
-        number_account:genRand(), 
+        number_account:ac, 
         type_account: typeAccounts.typeAcountsStatus.status==="success"?
             typeAccounts.typeAcounts.find(type=>type.title_account==="DEBIT").id:
             null

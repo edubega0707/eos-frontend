@@ -4,7 +4,7 @@ import {Row, Col, Collapse} from 'antd'
 import {useSelector, useDispatch} from 'react-redux'
 import { ProfileActions } from '../../redux/actions/actionsProfile';
 import BannerProfile from '../../components/BannerProfile';
-import {AccountTypeActions, AccountDebitActions } from '../../redux/actions/actionsAccounts';
+import {AccountTypeActions, AccountDebitActions, AccountCreditActions } from '../../redux/actions/actionsAccounts';
 import AccountsDebitList from './AccountsDebitList';
 import AccountCreditList from './AccountCreditList';
 import ModalFormAction from '../../containers/ModalFormAction';
@@ -55,11 +55,8 @@ const MyAccountsPage = () => {
                 <ModalFormAction title="Agregar cuenta de Debito" submitFunction={AccountDebitActions.accountDebitCreateRequest}>
                     <FormDebitAccount/>
                 </ModalFormAction>
-                <ModalFormAction title="Agregar cuenta de Credito">
+                <ModalFormAction title="Agregar cuenta de Credito" submitFunction={AccountCreditActions.accountsCreditRequest}>
                    <FormCreditAccount/>
-                </ModalFormAction>
-                <ModalFormAction title="Agregar cuenta de terceros">
-                    <FormAccountOthers/>
                 </ModalFormAction>
             </Col>
             <Col lg={24} md={24} sm={24} xs={24} style={styles.containerAcounts}>

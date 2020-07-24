@@ -3,7 +3,6 @@ import {Button} from 'antd'
 import { Formik, Form, FastField} from "formik";
 import { FieldText, FieldDataAmmount } from '../../../components/inputs';
 import {validationFormDeposito } from '../../../utils/formValidations';
-import {useSelector} from 'react-redux'
 
 const styles={
     containerButton:{
@@ -15,12 +14,10 @@ const styles={
 
 const FormDeposito = (props) => {
     const{account}=props
-    const profile= useSelector(state => state.profileReducer.profile)
-    //const typeAccounts= useSelector(state => state.typeAccountsReducer.typeAcounts)
     const{registro, loading}=props
 
     const initialValues={ 
-        user: profile.id, 
+        user: account.user_account.id, 
         account:account.id,
         type_transaction:'DEPOSITO',
         ammount:'',

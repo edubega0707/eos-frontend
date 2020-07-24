@@ -2,7 +2,10 @@ import {createStore, applyMiddleware, combineReducers,compose} from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import authenticationReducer from './reducers/authReducer'
 import profileReducer from './reducers/profileReducer'
-import {accountsDebitReducer,accountsCreditReducer, typeAccountsReducer} from './reducers/acoountsReducer'
+import {accountsDebitReducer,
+        accountsCreditReducer, 
+        typeAccountsReducer,
+        accountDetailReducer} from './reducers/acoountsReducer'
 import {transactionsReducer} from'./reducers/reducerTransactions'
 import sagasPrimary from './sagas/Sagas'
 import sagasProfile from './sagas/SagasProfile'
@@ -15,7 +18,8 @@ const reducers= combineReducers({
     accountsDebitReducer,
     accountsCreditReducer,
     typeAccountsReducer,
-    transactionsReducer
+    transactionsReducer,
+    accountDetailReducer
 })
 
 const sagaMiddleware = createSagaMiddleware();

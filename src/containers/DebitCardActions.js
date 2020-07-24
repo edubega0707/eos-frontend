@@ -7,7 +7,6 @@ import {useRouteMatch,useLocation, Link } from 'react-router-dom';
 const DebitCardActions = (props) => {
     const { account } = props
     let {path} = useRouteMatch();
-
     return (
         <Card
             actions={[

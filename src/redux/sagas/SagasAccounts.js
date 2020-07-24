@@ -110,12 +110,40 @@ function* sagaCreateAccount(values) {
   }
 
 
+const getDetailAccount=(user,idAccount)=> fetch(`${CONSTANTES.URLAPI}/eos/my_accounts/${idAccount}/`,
+{
+  method: 'GET',
+  headers: new Headers({
+    'Authorization':'Token '+user,
+    'Content-Type': 'application/json'
+})
+})
+.then(response => response.json())
+.catch(e=>{
+  console.log(e)
+})
+
+
+function* sagaDetailAccount(values){
+    try { 
+      const user = localStorage.getItem('user');
+      const idAccount= values.idAccount
+      const account= yield call (getDetailAccount, user, idAccount)
+      yield put (AccountDebitActions.getDetailAccountSuccess(account)) 
+    } catch (error) {
+      notification.error({
+          message: 'Error',
+          duration:2
+        });
+      yield put (AccountDebitActions.getDetailAccountFailed(error))
+    }
+  }
+
 export default function* sagasAccounts() {
   yield takeEvery(CONSTANTES.GET_TYPE_ACCOUNTS_REQUEST, sagaGetTypeAccounts)
   yield takeEvery(CONSTANTES.GET_ACCOUNTS_DEBIT_REQUEST, sagaGetDebitAccounts)
   yield takeEvery(CONSTANTES.GET_ACCOUNTS_CREDIT_REQUEST, sagaGetCreditAccounts)
   yield takeEvery(CONSTANTES.CREATE_ACCOUNT_DEBIT_REQUEST, sagaCreateAccount)
-
-  
+  yield takeEvery(CONSTANTES.GET_DETAIL_ACCOUNT_REQUEST, sagaDetailAccount)
 
 }

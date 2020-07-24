@@ -56,8 +56,8 @@ function* sagaDeposito(values){
 
       const user = localStorage.getItem('user');
       const deposito=yield call (depositoRequest, user, values.data)
-      console.log(deposito)
-      //yield put (AccountDebitActions.updateAccountDebitRequest(account)) 
+      yield put(AccountDebitActions.updateAccountDebitRequest(deposito)) 
+
     } catch (error) {
       notification.error({
           message: 'Error',

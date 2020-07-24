@@ -25,7 +25,6 @@ const SignUpPage = () => {
             <NavBar/>
             <Row style={styles.containerLogin}>
                 <Col lg={12} md={12} sm={24} xs={24} style={styles.containerImage}>
-                   
                 </Col>
                 <Col lg={12} md={12} sm={24} xs={24} style={styles.containerLoginForm}>
                   <FormRegister/>

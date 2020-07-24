@@ -3,6 +3,7 @@ import logovisa from '../assets/logoVisa.png'
 import {Statistic} from 'antd'
 const styles={
     containerCard:{
+        position:"relative",
         width:"100%",
         height:"150px",
         padding: "2em",
@@ -11,7 +12,9 @@ const styles={
         color:"#f9f7f7"
     },
     logoVisa:{
-        width:"40%"
+        position:"absolute",
+        top:"60%",
+        width:"30%"
     },
     valueStyle:{
         color:"#f9f7f7"
@@ -23,7 +26,7 @@ const AccountDebitCard = (props) => {
     return (
         <div style={styles.containerCard}>
             <img src={logovisa} alt="logovisa" style={styles.logoVisa}/>
-            <span>{account.number_account}</span>
+            <span>{account.number_account?account.number_account:null}</span>
             <Statistic  value={account.ammount?account.ammount:1000}  prefix="$" valueStyle={styles.valueStyle} precision={2}/>
         </div>
     );

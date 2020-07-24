@@ -12,7 +12,10 @@ export const AccountDebitActions = {
     accountDebitCreateRequest,
     accountDebitCreateSuccess,
     accountDebitCreateFailed,
-    updateAccountDebitRequest
+    updateAccountDebitRequest,
+    getDetailAccountRequest,
+    getDetailAccountSuccess,
+    getDetailAccountFailed
 };
 
 
@@ -26,10 +29,9 @@ function accountDebitCreateFailed(error) {return { type: CONSTANTES.CREATE_ACCOU
 
 function updateAccountDebitRequest(account){return { type: CONSTANTES.UPDATE_ACCOUNT_DEBIT, account}}
 
-
-
-
-
+function getDetailAccountRequest(idAccount) {return { type: CONSTANTES.GET_DETAIL_ACCOUNT_REQUEST, idAccount}}
+function getDetailAccountSuccess(account) {return { type: CONSTANTES.GET_DETAIL_ACCOUNT_SUCCESS, account}}
+function getDetailAccountFailed(error){return { type: CONSTANTES.GET_DETAIL_ACCOUNT_FAILED, error}}
 
 
 export const AccountCreditActions = {
@@ -52,3 +54,4 @@ export const AccountTypeActions={
 function typeAccountsRequest() {return { type: CONSTANTES.GET_TYPE_ACCOUNTS_REQUEST }}
 function typeAccountsSuccess(typeAccounts) {return { type: CONSTANTES.GET_TYPE_ACCOUNTS_SUCCESS,typeAccounts }}
 function typeAccountsRequestFailed(error) {return { type: CONSTANTES.GET_TYPE_ACCOUNTS_FAILED, error }}
+
