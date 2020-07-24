@@ -102,6 +102,20 @@ export  function accountsDebitReducer(state = initialStateCreditAccounts, action
                   error: action.error
               },
           }
+        case CONSTANTES.UPDATE_ACCOUNT_DEBIT:
+            return {
+                ...state,
+                accounts: state.accounts.map((account) => {
+                    if (account.id === action.account.id) {
+                      return { ...account, ...action.account };
+                    }
+                    return account;
+                  }),
+                accountsStatus: {
+                    status: "error",
+                    error: action.error
+                },
+            }
         
 
     default:
@@ -124,7 +138,7 @@ export  function typeAccountsReducer(state = initialStateTypeAccounts, action) {
         case CONSTANTES.GET_TYPE_ACCOUNTS_REQUEST:
             return {
                 ...state,
-                accountsStatus: {
+                typeAcountsStatus: {
                     status: "loading",
                     error: ""
                 },
@@ -133,7 +147,7 @@ export  function typeAccountsReducer(state = initialStateTypeAccounts, action) {
             return {
                 ...state,
                 typeAcounts:[...action.typeAccounts],
-                accountsStatus: {
+                typeAcountsStatus: {
                     status: "success",
                     error: ""
                 },

@@ -11,7 +11,8 @@ export const AccountDebitActions = {
     accountsFailed,
     accountDebitCreateRequest,
     accountDebitCreateSuccess,
-    accountDebitCreateFailed
+    accountDebitCreateFailed,
+    updateAccountDebitRequest
 };
 
 
@@ -23,6 +24,7 @@ function accountDebitCreateRequest(data) {return { type: CONSTANTES.CREATE_ACCOU
 function accountDebitCreateSuccess(account) {return { type: CONSTANTES.CREATE_ACCOUNT_DEBIT_SUCCESS, account }}
 function accountDebitCreateFailed(error) {return { type: CONSTANTES.CREATE_ACCOUNT_DEBIT_FAILED, error }}
 
+function updateAccountDebitRequest(account){return { type: CONSTANTES.UPDATE_ACCOUNT_DEBIT, account}}
 
 
 

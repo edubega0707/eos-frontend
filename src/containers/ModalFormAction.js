@@ -1,19 +1,20 @@
 import React,{useState} from 'react';
 import { Modal, Button } from 'antd';
 import {useDispatch} from 'react-redux'
-import { AccountDebitActions } from '../redux/actions/actionsAccounts';
+
 
 
 const ModalFormAction = (props) => {
     const dispatch=useDispatch()
-    const {title, children}=props
+    const {title, children,submitFunction}=props
     const[visible,setVisible]=useState(false)
     const[loading,setLoading]=useState(false)
     
     const handleSubmit = (values) => {
+        console.log(values)
         setLoading(true)
         setTimeout(() => {
-            dispatch(AccountDebitActions.accountDebitCreateRequest(values))
+            dispatch(submitFunction(values))
             setLoading(false)
             setVisible(false)
         }, 2000);

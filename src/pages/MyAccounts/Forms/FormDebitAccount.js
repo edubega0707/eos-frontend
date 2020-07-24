@@ -19,7 +19,7 @@ function genRand() {
 
 const FormDebitAccount = (props) => {
     const profile= useSelector(state => state.profileReducer.profile)
-    const typeAccounts= useSelector(state => state.typeAccountsReducer.typeAcounts)
+    const typeAccounts= useSelector(state => state.typeAccountsReducer)
 
     const{registro, loading}=props
     const onSubmit = values => {
@@ -29,7 +29,9 @@ const FormDebitAccount = (props) => {
     const initialValues={ 
         user_account: profile.id, 
         number_account:genRand(), 
-        type_account:typeAccounts.find(type=>type.title_account==="DEBIT").id
+        type_account: typeAccounts.typeAcountsStatus.status==="success"?
+            typeAccounts.typeAcounts.find(type=>type.title_account==="DEBIT").id:
+            null
     }
     return (
         <Formik
