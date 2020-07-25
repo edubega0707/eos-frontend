@@ -81,4 +81,24 @@ export const FieldDataAmmount = (props) => {
         </Form.Item>)
 }
 
-
+export const FieldDataRetiro= (props) => {
+    return ( 
+        <Form.Item
+            labelCol={{ span:24 }}
+            wrapperCol={{ span:24 }}
+            label={<span style={styles.styleLabel}>{props.placeholder}</span>}
+            validateStatus={props.meta.touched && props.meta.error ? "error" : ""}
+            hasFeedback
+            help={props.meta.touched && props.meta.error ? 
+                <span style={styles.styleError}>{props.meta.error}</span>
+                : ""} >
+            <Input
+                style={styles.inputAmmount}
+                placeholder={props.placeholder}
+                prefix={"$"}
+                size={"default"}
+                type="number"
+                {...props.field}
+                />
+        </Form.Item>)
+}

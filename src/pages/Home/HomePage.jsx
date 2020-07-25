@@ -1,5 +1,4 @@
 import React from 'react';
-import{Row,Col}from 'antd'
 import NavBar from '../../containers/Navbar';
 
 const styles={

@@ -1,8 +1,6 @@
 import React from 'react';
 import {Button} from 'antd'
-import { Formik, Form, FastField} from "formik";
-import { FieldText, FieldPassword } from '../../../components/inputs';
-import { validationFormRegister } from '../../../utils/formValidations';
+import { Formik, Form} from "formik";
 import AccountDebitCard from '../../../components/AccountDebitCard';
 import {useSelector} from 'react-redux'
 

@@ -87,7 +87,9 @@ function* sagaDeposito(values){
   function* sagasRetiro(values){
     try { 
       const user = localStorage.getItem('user');
-      const retiro=yield call (retiroRequest, user, values.data)
+      let RetiroData=values.data
+      RetiroData.ammount=RetiroData.ammount*1.10
+      const retiro=yield call (retiroRequest, user, RetiroData)
       yield put(AccountCreditActions.updateAccountCreditRequest(retiro)) 
     } catch (error) {
       notification.error({
