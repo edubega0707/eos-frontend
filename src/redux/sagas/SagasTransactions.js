@@ -3,7 +3,7 @@ import CONSTANTES from '../Constantes';
 import { notification } from 'antd';
 import { ProfileActions } from '../actions/actionsProfile';
 import { TransactionActions } from '../actions/actionsTransactions';
-import { AccountDebitActions } from '../actions/actionsAccounts';
+import { AccountDebitActions, AccountCreditActions } from '../actions/actionsAccounts';
 
 
 const getTransactions=(user)=> fetch(`${CONSTANTES.URLAPI}/eos/admin/type_accounts/`,
@@ -67,7 +67,39 @@ function* sagaDeposito(values){
     }
   }
 
+
+  const retiroRequest = (user, datos) => fetch(`${CONSTANTES.URLAPI}/eos/withdraw/`,
+  {
+    method: 'POST',
+    body: JSON.stringify(datos),
+    headers: new Headers({
+      'Authorization': 'Token ' + user,
+      'Content-Type': 'application/json'
+    })
+  })
+  .then(response => {
+    return response.json()
+  })
+  .catch(e => {
+    console.log(e)
+  })
+
+  function* sagasRetiro(values){
+    try { 
+      const user = localStorage.getItem('user');
+      const retiro=yield call (retiroRequest, user, values.data)
+      yield put(AccountCreditActions.updateAccountCreditRequest(retiro)) 
+    } catch (error) {
+      notification.error({
+          message: 'Error',
+          duration:2
+        });
+      yield put (TransactionActions.retiroFailed(error))
+    }
+  }
+
   export default function* sagasTransactions() {
     yield takeEvery(CONSTANTES.TRANSACTIONS_REQUEST, sagaGetTransactions)
     yield takeEvery(CONSTANTES.DEPOSITO_REQUEST, sagaDeposito)
+    yield takeEvery(CONSTANTES.RETIRO_REQUEST, sagasRetiro)
   }

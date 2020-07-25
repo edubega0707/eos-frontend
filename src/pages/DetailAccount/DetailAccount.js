@@ -8,6 +8,7 @@ import FormDeposito from './forms/FormDeposito';
 import { TransactionActions } from '../../redux/actions/actionsTransactions';
 import { AccountDebitActions } from '../../redux/actions/actionsAccounts';
 import TransactionComponent from '../../components/TransactionComponent';
+import FormRetiro from './forms/FormRetiro';
 
 
 const styles={
@@ -44,7 +45,7 @@ const DetailAccount = (props) => {
                         <FormDeposito account={detail} />
                     </ModalFormAction>
                     <ModalFormAction title="Retirar Efectivo" submitFunction={TransactionActions.retiroRequest}>
-                        <FormDeposito account={detail} />
+                        <FormRetiro account={detail} />
                     </ModalFormAction>
             </Col>
             </Row>

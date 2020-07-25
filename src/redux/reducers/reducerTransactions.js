@@ -41,8 +41,7 @@ export  function transactionsReducer(state = initialStateTransactions, action) {
                 transactionsStatus: {
                     status: "loading",
                     error: ""
-                },
-            }
+        }}
         case CONSTANTES.DEPOSITO_SUCCESS:
             return {
                 ...state,
@@ -60,32 +59,32 @@ export  function transactionsReducer(state = initialStateTransactions, action) {
                     error: action.error
                 },
             }
-            case CONSTANTES.RETIRO_REQUEST:
-                return {
-                    ...state,
-                    transactionsStatus: {
-                        status: "loading",
-                        error: ""
-                    },
-                }
-            case CONSTANTES.RETIRO_SUCCESS:
-                return {
-                    ...state,
-                    transactions: [...state.transactions, action.transaction],
-                    transactionsStatus: {
-                        status: "success",
-                        error: ""
-                    },
-                }
-            case CONSTANTES.RETIRO_FAILED:
-                return {
-                    ...state,
-                    transactionsStatus: {
-                        status: "error",
-                        error: action.error
-                    },
-                }       
-          
+        case CONSTANTES.RETIRO_REQUEST:
+            return {
+                ...state,
+                transactionsStatus: {
+                    status: "loading",
+                    error: ""
+                },
+            }
+        case CONSTANTES.RETIRO_SUCCESS:
+            return {
+                ...state,
+                transactions: [...state.transactions, action.transaction],
+                transactionsStatus: {
+                    status: "success",
+                    error: ""
+                },
+            }
+        case CONSTANTES.RETIRO_FAILED:
+            return {
+                ...state,
+                transactionsStatus: {
+                    status: "error",
+                    error: action.error
+                },
+            }
+
   
       default:
         return state

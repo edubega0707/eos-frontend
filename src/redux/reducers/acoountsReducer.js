@@ -172,7 +172,7 @@ export  function typeAccountsReducer(state = initialStateTypeAccounts, action) {
   }
 
 
-  const initialStateDetailCandidato= {
+const initialStateDetailCandidato= {
     account:{},
     accoundDetailStatus:{
         status:null,
@@ -207,7 +207,6 @@ export  function accountDetailReducer(state = initialStateDetailCandidato, actio
                 },
             };
         case CONSTANTES.UPDATE_ACCOUNT_DEBIT:
-            console.log(action.account)
             return {
                 ...state,
                 account:{
@@ -220,6 +219,19 @@ export  function accountDetailReducer(state = initialStateDetailCandidato, actio
                     error: ""
                 },
             }
+        case CONSTANTES.UPDATE_ACCOUNT_CREDIT:
+                return {
+                    ...state,
+                    account:{
+                        ...state.account, 
+                        ammount:state.account.ammount-action.account.ammount,
+                        account_transaction:[...state.account.account_transaction, action.account]
+                    },
+                    accoundDetailStatus: {
+                        status: "success",
+                        error: ""
+                    },
+                }
 
 
       default:

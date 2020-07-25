@@ -39,6 +39,8 @@ export const AccountCreditActions = {
     accountsCreditSuccess,
     accountsCreditFailed,
 
+    updateAccountCreditRequest,
+
     accountCreditCreateRequest,
     accountCreditCreateSuccess,
     accountCreditCreateFailed
@@ -47,6 +49,8 @@ export const AccountCreditActions = {
 function accountsCreditRequest(idTypeAccount) {return { type: CONSTANTES.GET_ACCOUNTS_CREDIT_REQUEST, idTypeAccount}}
 function accountsCreditSuccess(accounts) {return { type: CONSTANTES.GET_ACCOUNTS_CREDIT_SUCCESS, accounts }}
 function accountsCreditFailed(error) {return { type: CONSTANTES.GET_ACCOUNTS_CREDIT_FAILED, error }}
+
+function updateAccountCreditRequest(account){return { type: CONSTANTES.UPDATE_ACCOUNT_CREDIT, account}}
 
 function accountCreditCreateRequest(data) {return { type: CONSTANTES.CREATE_ACCOUNT_CREDIT_REQUEST, data}}
 function accountCreditCreateSuccess(account) {return { type: CONSTANTES.CREATE_ACCOUNT_CREDIT_SUCCESS, account }}

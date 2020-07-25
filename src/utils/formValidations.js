@@ -25,6 +25,19 @@ export const validationFormDeposito=(data)=>{
     Yup.object({
       ammount: Yup.number()
         .min(1, "Envia al menos 1 peso")
+        .required("Campo requerido"),
+      reference: Yup.string()
+        .required('Campo requerido'),
+    })
+  )
+} 
+
+
+export const validationFormRetiro=(data)=>{
+  return (
+    Yup.object({
+      ammount: Yup.number()
+        .min(1, "Retira al menos 1 peso")
         .max(data.ammount, `Has superado el limite de tu saldo ${data.ammount}`)
         .required("Campo requerido"),
       reference: Yup.string()
